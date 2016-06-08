@@ -1,0 +1,15 @@
+#+Title: AlgoWeb
+
+AlgoWeb est une application HTML5 utilisant blockly tout en étant le plus proche possible de algoBox
+
+L'idée est d'avoir une programation par bloque correspondant au programme de Lycée en Algorithmique.
+
+* Droits
+- acorn_interpreter.js :: Acorn was written by Marijn Haverbeke and released under an MIT license. The Unicode regexps (for identifiers and whitespace) were // taken from [Esprima](http://esprima.org) by Ariya Hidayat.
+- blockly/* :: Blockly est un projet de google, publié sous la licence APACHE
+- * :: Le reste est mon œuvre (Copyright 2016 Rémi Vanicat) sous licence CC0 (https://creativecommons.org/publicdomain/zero/1.0/deed.fr):
+     j'ai dédié l’œuvre au domaine public en renonçant dans le monde entier à mes droits sur l’œuvre selon les lois sur le droit d’auteur, droit voisin et connexes, dans la mesure permise par la loi.
+
+     Vous pouvez copier, modifier, distribuer et représenter l’œuvre, même à des fins commerciales, sans avoir besoin de demander l’autorisation.
+* Utilisation
+ouvrez index.html avec chrome, chromium ou firefox.
