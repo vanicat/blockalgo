@@ -7,14 +7,15 @@
     <script src="blockly/blocks_compressed.js"></script>
     <script src="blockly/javascript_compressed.js"></script>
     <script src="blockly/msg/js/fr.js"></script>
-    <script src="acorn_interpreter.js"></script>
+    <script src="acorn.js"></script>
+    <script src="interpreter.js"></script>
   </head>
   <body id="main">
     <h1>AlgoWeb: comme algobox, mais avec blockly</h1>
     <div id="blocklyDiv" style="height: 480px; width: 90%;"></div>
 
     <div id="control">
-      <button type="button" onclick="runCode()">Tester le code</button>
+      <button type="button" onclick="runButton()">Tester le code</button>
     </div>
     <div id="console" class="console"></div>
 
@@ -27,6 +28,7 @@
       <block type="math_arithmetic"></block>
       <block type="text"></block>
       <block type="text_print"></block>
+      <block type="text_prompt"></block>
     </xml>
     <script src="algoWeb.js"> </script>
   </body>
