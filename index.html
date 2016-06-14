@@ -23,11 +23,15 @@
 
 
     <xml id="toolbox" style="display: none">
-      <category name="Contrôle">
+      <category name="Logique" colour="210">
         <block type="controls_if"></block>
         <block type="controls_if">
           <mutation else="1"></mutation>
         </block>
+        <block type="logic_compare"></block>
+        <block type="math_number_property"></block>
+      </category>
+      <category name="Boucles" colour="120">
         <block type="controls_for">
           <value name="FROM">
             <block type="math_number">
@@ -54,17 +58,19 @@
           </value>
         </block>
       </category>
-      <category name="Nombre">
-        <block type="logic_compare"></block>
+      <category name="Nombres" colour="230">
         <block type="math_number"></block>
+        <block type="math_constant"></block>
         <block type="math_arithmetic"></block>
+        <block type="math_single"></block>
+        <block type="math_trig"></block>
       </category>
-      <category name="Texte">
+      <category name="Texte" colour="160">
         <block type="text"></block>
         <block type="text_print"></block>
         <block type="text_prompt"></block>
       </category>
-      <category name="Variables">
+      <category name="Variables" colour="330">
         <block type="affectation"></block>
         <block type="variables_get">
           <field name="VAR">variable</field>
