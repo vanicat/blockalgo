@@ -3,7 +3,6 @@
 Blockly.Blocks['affectation'] = {
   init: function() {
     this.appendValueInput("value")
-        .setCheck("Number")
         .appendField(new Blockly.FieldVariable("variable"), "NAME")
         .appendField("prend la valeur");
     this.setPreviousStatement(true, null);
