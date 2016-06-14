@@ -9,6 +9,7 @@
     <script src="blockly/msg/js/fr.js"></script>
     <script src="acorn.js"></script>
     <script src="interpreter.js"></script>
+    <script src="myblocks.js"></script>
   </head>
   <body id="main">
     <h1>AlgoWeb: comme algobox, mais avec blockly</h1>
@@ -63,8 +64,12 @@
         <block type="text_print"></block>
         <block type="text_prompt"></block>
       </category>
-      <category name="Variables" custom="VARIABLE"></category>
-
+      <category name="Variables">
+        <block type="affectation"></block>
+        <block type="variables_get">
+          <field name="VAR">variable</field>
+        </block>
+      </category>
     </xml>
     <script src="algoWeb.js"> </script>
   </body>
