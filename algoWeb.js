@@ -3,6 +3,10 @@ var myInterpreter;
 
 var runButton = function() {
     var code = Blockly.JavaScript.workspaceToCode(workspace);
+    var div = document.getElementById('code');
+    div.innerHTML = code;
+
+
     myInterpreter = new Interpreter(code, initApi);
     var runCode = function () {
         if(myInterpreter.run()) {
