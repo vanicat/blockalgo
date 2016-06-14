@@ -21,14 +21,49 @@
 
 
     <xml id="toolbox" style="display: none">
-      <block type="controls_if"></block>
-      <block type="controls_repeat_ext"></block>
-      <block type="logic_compare"></block>
-      <block type="math_number"></block>
-      <block type="math_arithmetic"></block>
-      <block type="text"></block>
-      <block type="text_print"></block>
-      <block type="text_prompt"></block>
+      <category name="Contrôle">
+        <block type="controls_if"></block>
+        <block type="controls_if">
+          <mutation else="1"></mutation>
+        </block>
+        <block type="controls_for">
+          <value name="FROM">
+            <block type="math_number">
+              <field name="NUM">1</field>
+            </block>
+          </value>
+          <value name="TO">
+            <block type="math_number">
+              <field name="NUM">10</field>
+            </block>
+          </value>
+          <value name="BY">
+            <block type="math_number">
+              <field name="NUM">1</field>
+            </block>
+          </value>
+        </block>
+        <block type="controls_whileUntil"></block>
+        <block type="controls_repeat_ext">
+          <value name="TIMES">
+            <block type="math_number">
+              <field name="NUM">10</field>
+            </block>
+          </value>
+        </block>
+      </category>
+      <category name="Nombre">
+        <block type="logic_compare"></block>
+        <block type="math_number"></block>
+        <block type="math_arithmetic"></block>
+      </category>
+      <category name="Texte">
+        <block type="text"></block>
+        <block type="text_print"></block>
+        <block type="text_prompt"></block>
+      </category>
+      <category name="Variables" custom="VARIABLE"></category>
+
     </xml>
     <script src="algoWeb.js"> </script>
   </body>
