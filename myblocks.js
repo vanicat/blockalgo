@@ -44,3 +44,30 @@ Blockly.JavaScript['variables_lire'] = function(block) {
   var code = variable_name + ' = ' + 'parseFloat(prompt(\'' + display_name + ': \'));\n';
   return code;
 };
+
+
+// https://blockly-demo.appspot.com/static/demos/blockfactory/index.html
+
+Blockly.Blocks['controls_pour'] = {
+  init: function() {
+    this.appendValueInput("FROM")
+        .setCheck("Number")
+        .appendField("répéter pour ")
+        .appendField(new Blockly.FieldVariable("variable"), "VAR")
+        .appendField("allant de");
+    this.appendValueInput("TO")
+        .setCheck("Number")
+        .appendField("à");
+    this.appendValueInput("BY")
+        .setCheck("Number")
+        .appendField("par");
+    this.appendStatementInput("DO")
+        .setCheck(null);
+    this.setInputsInline(true);
+    this.setColour(120);
+    this.setTooltip('');
+    this.setHelpUrl('http://www.example.com/');
+  }
+};
+
+Blockly.JavaScript['controls_pour'] = Blockly.JavaScript['controls_for'];
