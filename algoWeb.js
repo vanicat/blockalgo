@@ -38,6 +38,22 @@ function displayTextLN(text) {
     div.appendChild(n);
 }
 
+function saveWorkspace() {
+    var xmlDom = Blockly.Xml.workspaceToDom(workspace);
+    var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
+
+    localStorage.setItem("blockly.xml", xmlText);
+}
+
+function loadWorkspace() {
+    var xmlText = localStorage.getItem("blockly.xml");
+    if (xmlText) {
+        workspace.clear();
+        xmlDom = Blockly.Xml.textToDom(xmlText);
+        Blockly.Xml.domToWorkspace(workspace, xmlDom);
+    }
+}
+
 var promptId;
 var promptOk;
 
