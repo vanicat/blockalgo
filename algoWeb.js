@@ -95,12 +95,13 @@ function consolePrompt(text) {
     promptId = Date.now();
     n.setAttribute('name', promptId);
     n.setAttribute('id', 'input' + promptId);
+    n.setAttribute('onchange', 'promptOk();');
     div.appendChild(n);
     n.focus();
 
     n = document.createElement('button');
     n.setAttribute('type', 'button');
-    n.setAttribute('onclick', 'promptOk()');
+    n.setAttribute('onclick', 'promptOk();');
     n.setAttribute('id', 'button' + promptId);
 
     n.innerHTML = 'ok';
