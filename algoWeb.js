@@ -1,6 +1,19 @@
 var workspace = Blockly.inject('blocklyDiv', {toolbox: document.getElementById('toolbox')});
 var myInterpreter;
 
+
+function myUpdateFunction(event) {
+    var code = Blockly.JavaScript.workspaceToCode(workspace);
+
+    document.getElementById('code').innerHTML = code;
+    var xmlDom = Blockly.Xml.workspaceToDom(workspace);
+    var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
+
+    document.getElementById('xml').value = xmlText;
+}
+
+workspace.addChangeListener(myUpdateFunction);
+
 var runButton = function() {
     var code = Blockly.JavaScript.workspaceToCode(workspace);
     var div = document.getElementById('code');
