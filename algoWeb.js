@@ -1,6 +1,8 @@
 var workspace = Blockly.inject('blocklyDiv', {toolbox: document.getElementById('toolbox')});
 var myInterpreter;
 
+var firstrun = true;
+
 
 function myUpdateFunction(event) {
     var code = Blockly.JavaScript.workspaceToCode(workspace);
@@ -16,6 +18,18 @@ workspace.addChangeListener(myUpdateFunction);
 
 var runButton = function() {
     var code = Blockly.JavaScript.workspaceToCode(workspace);
+    if(firstrun) {
+        firstrun = false;
+    } else {
+        var console = document.getElementById('console');
+
+        var n = document.createElement('br');
+        console.appendChild(n);
+
+        n = document.createElement('hr');
+        console.appendChild(n);
+    }
+
     var div = document.getElementById('code');
     div.innerHTML = code;
 
