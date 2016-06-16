@@ -19,6 +19,11 @@ var runButton = function() {
     runCode();
 };
 
+var clean = function () {
+    var div = document.getElementById('console');
+    div.innerHTML = "";
+}
+
 function displayText(text) {
     var div = document.getElementById('console');
     var t = document.createTextNode(text);
