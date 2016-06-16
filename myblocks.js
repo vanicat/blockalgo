@@ -46,24 +46,26 @@ Blockly.JavaScript['variables_lire'] = function(block) {
 };
 
 
-// https://blockly-demo.appspot.com/static/demos/blockfactory/index.html
-
+// https://blockly-demo.appspot.com/static/demos/blockfactory/index.html#3hc9fz
 Blockly.Blocks['controls_pour'] = {
   init: function() {
     this.appendValueInput("FROM")
         .setCheck("Number")
-        .appendField("répéter pour ")
+        .appendField("répéter pour")
         .appendField(new Blockly.FieldVariable("variable"), "VAR")
         .appendField("allant de");
     this.appendValueInput("TO")
         .setCheck("Number")
         .appendField("à");
     this.appendValueInput("BY")
-        .setCheck("Number")
-        .appendField("par");
+        .setCheck(null)
+        .appendField("avec pas de");
     this.appendStatementInput("DO")
-        .setCheck(null);
+        .setCheck(null)
+        .appendField("faire");
     this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
     this.setColour(120);
     this.setTooltip('');
     this.setHelpUrl('http://www.example.com/');
