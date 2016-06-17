@@ -117,13 +117,13 @@ function consolePrompt(text) {
 }
 
 function initApi(interpreter, scope) {
-    // Add an API function for the alert() block.
+    // Add an API function for the display() block.
     var wrapper = function(text) {
         text = text ? text.toString() : '';
         return interpreter.createPrimitive(displayText(text));
     };
 
-    interpreter.setProperty(scope, 'alert',
+    interpreter.setProperty(scope, 'display',
                             interpreter.createNativeFunction(wrapper));
 
     // Add an API function for the prompt() block.

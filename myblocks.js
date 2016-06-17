@@ -154,4 +154,32 @@ Blockly.Blocks['controls_pour'] = {
 
 Blockly.JavaScript['controls_pour'] = Blockly.JavaScript['controls_for'];
 
+// https://blockly-demo.appspot.com/static/demos/blockfactory/index.html#kkwhhq
+Blockly.Blocks['text_afficher'] = {
+  init: function() {
+    this.appendValueInput("TEXT")
+        .setCheck(null)
+        .appendField("afficher");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["avec un retour à la ligne", "LF"], ["sans retour à la ligne", "NOLF"]]), "NEWLINE");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(160);
+    this.setTooltip('');
+    this.setHelpUrl('http://www.example.com/');
+  }
+};
+
+Blockly.JavaScript['text_afficher'] = function(block) {
+    var value_text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
+    var dropdown_newline = block.getFieldValue('NEWLINE');
+    // TODO: Assemble JavaScript into code variable.
+    var code = 'display(' + value_text + ');';
+    if(dropdown_newline == "LF") {
+        code += '\ndisplay(\'\\n\');';
+    }
+    return code;
+};
+
 Blockly.Msg.VARIABLES_DEFAULT_NAME = "x";
