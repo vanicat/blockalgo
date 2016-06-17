@@ -91,7 +91,7 @@ function consolePrompt(text) {
     div.appendChild(n);
 
     n = document.createElement('input');
-    n.setAttribute('type', 'text');
+    n.setAttribute('type', 'number');
     promptId = Date.now();
     n.setAttribute('name', promptId);
     n.setAttribute('id', 'input' + promptId);
