@@ -28,7 +28,7 @@
 Blockly.Blocks['variables_affectation'] = {
   init: function() {
     this.appendValueInput("value")
-        .appendField(new Blockly.FieldVariable("variable"), "VAR")
+        .appendField(new Blockly.FieldVariable(Blockly.Msg.VARIABLES_DEFAULT_NAME), "VAR")
         .appendField("prend la valeur");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -52,7 +52,7 @@ Blockly.Blocks['variables_lire'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("Lire")
-        .appendField(new Blockly.FieldVariable("variable"), "VAR");
+        .appendField(new Blockly.FieldVariable(Blockly.Msg.VARIABLES_DEFAULT_NAME), "VAR");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -132,7 +132,7 @@ Blockly.Blocks['controls_pour'] = {
     this.appendValueInput("FROM")
         .setCheck("Number")
         .appendField("répéter pour")
-        .appendField(new Blockly.FieldVariable("variable"), "VAR")
+        .appendField(new Blockly.FieldVariable(Blockly.Msg.VARIABLES_DEFAULT_NAME), "VAR")
         .appendField("allant de");
     this.appendValueInput("TO")
         .setCheck("Number")
@@ -153,3 +153,5 @@ Blockly.Blocks['controls_pour'] = {
 };
 
 Blockly.JavaScript['controls_pour'] = Blockly.JavaScript['controls_for'];
+
+Blockly.Msg.VARIABLES_DEFAULT_NAME = "x";
