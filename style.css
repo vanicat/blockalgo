@@ -9,3 +9,12 @@ div.frame  label {
     border-width: 3px;
     border-color: rgb(221, 221, 221)
 }
+
+div.license {
+    color: rgb(100,100,100);
+    margin: 20px;
+}
+
+div.sublicense {
+    margin-left: 40px;
+}

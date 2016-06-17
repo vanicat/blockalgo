@@ -1,3 +1,28 @@
+// © 2016 Rémi Vanicat (vanicat@debian.org)
+//
+// Vous pouvez uitilisez, modifier et redistribuer ce code suivant les
+// termes de licence APACHE Version 2.0 (Fichier LICENSE)
+//
+// Ce fichier contient les modifications et ajout à la bibliothèque blockly de Google
+// Une partie de ce code a été généré par l'app blockfactory de google, les
+// liens se trouvent dans les commentaires.
+//
+// Il contient du code modifié de blockly:
+// * Copyright 2012 Google Inc.
+// * https://developers.google.com/blockly/
+// * Licensed under the Apache License, Version 2.0 (the "License");
+// * you may not use this file except in compliance with the License.
+// * You may obtain a copy of the License at
+// *
+// *   http://www.apache.org/licenses/LICENSE-2.0
+// *
+// * Unless required by applicable law or agreed to in writing, software
+// * distributed under the License is distributed on an "AS IS" BASIS,
+// * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// * See the License for the specific language governing permissions and
+// * limitations under the License.
+
+
 //https://blockly-demo.appspot.com/static/demos/blockfactory/index.html#6f7hfn
 
 Blockly.Blocks['variables_affectation'] = {
