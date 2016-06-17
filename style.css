@@ -1,13 +1,13 @@
 div.frame div,pre {
     border-style: solid;
     border-width: 3px;
-    border-color: rgb(221, 221, 221)
+    border-color: rgb(221, 221, 221);
 }
 
 div.frame  label {
     border-style: solid;
     border-width: 3px;
-    border-color: rgb(221, 221, 221)
+    border-color: rgb(221, 221, 221);
 }
 
 div.license {
