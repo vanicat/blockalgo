@@ -1,3 +1,8 @@
+// © 2016 Rémi Vanicat (vanicat@debian.org)
+//
+// Vous pouvez uitilisez, modifier et redistribuer ce code suivant les
+// termes de la licence APACHE Version 2.0 (Fichier LICENSE)
+
 var workspace = Blockly.inject('blocklyDiv', {toolbox: document.getElementById('toolbox')});
 var myInterpreter;
 
