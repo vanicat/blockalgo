@@ -1,8 +1,10 @@
-#+Title: AlgoWeb
+#+Title: BlockAlgo
 
-AlgoWeb est une application HTML5 utilisant blockly tout en étant le plus proche possible de algoBox
+BlockAlgo est une application HTML5 utilisant blockly tout en étant le plus proche possible de algoBox
 
 L'idée est d'avoir une programation par bloque correspondant au programme de Lycée en Algorithmique.
+
+Une instance est disponible sur github: https://vanicat.github.io/blockalgo/
 
 * Droits
 - acorn_interpreter.js :: Acorn was written by Marijn Haverbeke and released under an MIT license. The Unicode regexps (for identifiers and whitespace) were // taken from [Esprima](http://esprima.org) by Ariya Hidayat.
@@ -11,4 +13,4 @@ L'idée est d'avoir une programation par bloque correspondant au programme de Ly
 * Utilisation
 ouvrez index.html avec chrome, chromium ou firefox (Non testé avec Edge ou internet explorer, n'hésitez pas à me donner des informations sur la compatibilité ou l'incompatibilité constater).
 * BUG
-Pour l'instant, envoyez moi un mail. Ceci sera sur github.
+Signalez moi les problèmes sur [[https://github.com/vanicat/blockalgo/issues][github]]
