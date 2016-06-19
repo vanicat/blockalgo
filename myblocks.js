@@ -175,9 +175,9 @@ Blockly.JavaScript['text_afficher'] = function(block) {
     var value_text = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_ATOMIC);
     var dropdown_newline = block.getFieldValue('NEWLINE');
     // TODO: Assemble JavaScript into code variable.
-    var code = 'display(' + value_text + ');';
+    var code = 'display(' + value_text + ');\n';
     if(dropdown_newline == "LF") {
-        code += '\ndisplay(\'\\n\');';
+        code += 'display(\'\\n\');\n';
     }
     return code;
 };
