@@ -22,7 +22,11 @@ function myUpdateFunction(event) {
 workspace.addChangeListener(myUpdateFunction);
 
 var runButton = function() {
+    var old_statement_prefix = Blockly.JavaScript.STATEMENT_PREFIX;
+    Blockly.JavaScript.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
     var code = Blockly.JavaScript.workspaceToCode(workspace);
+    Blockly.JavaScript.STATEMENT_PREFIX = old_statement_prefix;
+
     if(firstrun) {
         firstrun = false;
     } else {
@@ -35,17 +39,18 @@ var runButton = function() {
         console.appendChild(n);
     }
 
-    var div = document.getElementById('code');
-    div.innerHTML = code;
-
+    var highlightPause = false;
 
     myInterpreter = new Interpreter(code, initApi);
+    workspace.traceOn(true);
+    workspace.highlightBlock(null);
+
     var runCode = function () {
-        if(myInterpreter.run()) {
+        if(myInterpreter.step()) {
             // Ran until an async call.  Give this call a chance to run.
             // Then start running again later.
             // 1000ms is waaay too long, but is used here to demo the pause.
-            setTimeout(runCode, 10);
+            setTimeout(runCode, 4);
         };
     };
     runCode();
@@ -54,6 +59,7 @@ var runButton = function() {
 var clean = function () {
     var div = document.getElementById('console');
     div.innerHTML = "";
+    firstrun = true;
 }
 
 function displayText(text) {
@@ -170,4 +176,14 @@ function initApi(interpreter, scope) {
     };
     interpreter.setProperty(scope, 'prompt',
                             interpreter.createAsyncFunction(wrapper));
+
+    wrapper = function(id) {
+        id = id ? id.toString() : '';
+        workspace.highlightBlock(id);
+        return interpreter.createPrimitive(null);
+    };
+    interpreter.setProperty(scope, 'highlightBlock',
+                            interpreter.createNativeFunction(wrapper));
 };
+
+Blockly.JavaScript.addReservedWords('highlightBlock');
