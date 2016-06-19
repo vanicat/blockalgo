@@ -75,16 +75,42 @@ function saveWorkspace() {
     var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
 
     localStorage.setItem("blockly.xml", xmlText);
+    var blob = new window.Blob([xmlText], { type: "text/plain;charset=utf-8;"});
+    saveAs(blob, "program.xml");
 }
 
 function loadWorkspace() {
     var xmlText = localStorage.getItem("blockly.xml");
     if (xmlText) {
         workspace.clear();
-        xmlDom = Blockly.Xml.textToDom(xmlText);
+        var xmlDom = Blockly.Xml.textToDom(xmlText);
         Blockly.Xml.domToWorkspace(workspace, xmlDom);
     }
 }
+
+function openWorkspace() {
+    var fileElem = document.getElementById("fileElem");
+    fileElem.click();
+}
+
+function realyOpenWorkspace(e) {
+    if (!e) {
+        var file = document.getElementById("fileElem").files;
+    } else {
+        var file = e.dataTranfer.files;
+    }
+    var loading = new FileReader();
+    loading.readAsText(file[0]);
+    loading.onloadend = function(e) {
+        var xmlText = e.target.result;
+        if (xmlText) {
+            workspace.clear();
+            var xmlDom = Blockly.Xml.textToDom(xmlText);
+            Blockly.Xml.domToWorkspace(workspace, xmlDom);
+        }
+    };
+}
+
 
 var promptId;
 var promptOk;

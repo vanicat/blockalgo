@@ -9,6 +9,7 @@
     <script src="blockly/msg/js/fr.js"></script>
     <script src="acorn.js"></script>
     <script src="interpreter.js"></script>
+    <script src="Blob.js"></script>
     <script src="FileSaver.min.js"></script>
     <script src="myblocks.js"></script>
     <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
@@ -22,6 +23,8 @@
       <button type="button" onclick="runButton()">Tester le code</button>
       <button type="button" onclick="clean()">Vider la console</button>
       <button type="button" onclick="saveWorkspace()">Sauver</button>
+      <input type="file" id="fileElem" accept="text/*" style="display:none" onchange="realyOpenWorkspace(this.file)">
+      <button type="button" onclick="openWorkspace()">Open</button>
       <button type="button" onclick="loadWorkspace()">Recharger</button>
     </div>
     <br/><br/>
