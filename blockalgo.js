@@ -3,8 +3,35 @@
 // Vous pouvez uitilisez, modifier et redistribuer ce code suivant les
 // termes de la licence APACHE Version 2.0 (Fichier LICENSE)
 
-var workspace = Blockly.inject('blocklyDiv', {toolbox: document.getElementById('toolbox')});
+// injecting
+var blocklyArea = document.getElementById('blocklyArea');
+var blocklyDiv = document.getElementById('blocklyDiv');
+var workspace = null;
+var onresize = function(e) {
+    // Compute the absolute coordinates and dimensions of blocklyArea.
+    var element = blocklyArea;
+    var x = 0;
+    var y = 0;
+    do {
+        x += element.offsetLeft;
+        y += element.offsetTop;
+        element = element.offsetParent;
+    } while (element);
+    console.log("resize",x,y,blocklyArea.offsetWidth,blocklyArea.offsetHeight);
+    // Position blocklyDiv over blocklyArea.
+    blocklyDiv.style.left = x + 'px';
+    blocklyDiv.style.top = y + 'px';
+    blocklyDiv.style.width = blocklyArea.offsetWidth + 'px';
+    blocklyDiv.style.height = blocklyArea.offsetHeight + 'px';
+    if(!workspace) {
+        workspace = Blockly.inject(blocklyDiv,
+                                   {toolbox: document.getElementById('toolbox')});
+        workspace.addChangeListener(myUpdateFunction);
+    }
+};
 
+window.addEventListener('resize', onresize, false);
+window.addEventListener('load', onresize, false);
 
 function myUpdateFunction(event) {
     var code = Blockly.JavaScript.workspaceToCode(workspace);
@@ -16,7 +43,6 @@ function myUpdateFunction(event) {
     document.getElementById('xml').value = xmlText;
 }
 
-workspace.addChangeListener(myUpdateFunction);
 var myInterpreter;
 var firstrun = true;
 var highlightPause = false;
