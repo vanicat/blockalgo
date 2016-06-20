@@ -146,6 +146,19 @@ var pauseIt = function () {
     paused = true;
 };
 
+var stepIt = function () {
+    if (myInterpreter.step()) {
+        if(highlightPause) {
+            myInterpreter.step();
+            highlightPause = false;
+        } else {
+            stepIt();
+        }
+    } else {
+        makeCode();
+    }
+};
+
 var runIt = function() {
     if(firstrun || paused) {
         firstrun = false;
