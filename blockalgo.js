@@ -105,6 +105,17 @@ var hideRunningElement = function() {
     onresize();
 };
 
+var makeCode = function(){
+    var old_statement_prefix = Blockly.JavaScript.STATEMENT_PREFIX;
+    Blockly.JavaScript.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
+    code = Blockly.JavaScript.workspaceToCode(resultWorkspace);
+    Blockly.JavaScript.STATEMENT_PREFIX = old_statement_prefix;
+
+    myInterpreter = new Interpreter(code, initApi);
+    highlightPause = false;
+
+};
+
 var runButton = function() {
     showRunningElement();
 
@@ -115,15 +126,8 @@ var runButton = function() {
         Blockly.Xml.domToWorkspace(resultWorkspace, xmlDom);
     }
 
-    var old_statement_prefix = Blockly.JavaScript.STATEMENT_PREFIX;
-    Blockly.JavaScript.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
-    code = Blockly.JavaScript.workspaceToCode(resultWorkspace);
-    Blockly.JavaScript.STATEMENT_PREFIX = old_statement_prefix;
-
-    highlightPause = false;
-
-    myInterpreter = new Interpreter(code, initApi);
     resultWorkspace.traceOn(true);
+    makeCode();
     resultWorkspace.highlightBlock(null);
 };
 
@@ -154,7 +158,9 @@ var runIt = function() {
             } else {
                 runCode();
             }
-        };
+        } else {
+            makeCode();
+        }
     };
     runCode();
 };
@@ -163,7 +169,7 @@ var clean = function () {
     var div = document.getElementById('console');
     div.innerHTML = "";
     firstrun = true;
-}
+};
 
 function displayText(text) {
     var div = document.getElementById('console');
