@@ -120,6 +120,11 @@ var runButton = function() {
     code = Blockly.JavaScript.workspaceToCode(resultWorkspace);
     Blockly.JavaScript.STATEMENT_PREFIX = old_statement_prefix;
 
+    highlightPause = false;
+
+    myInterpreter = new Interpreter(code, initApi);
+    resultWorkspace.traceOn(true);
+    resultWorkspace.highlightBlock(null);
 };
 
 var stopIt = function() {
@@ -138,12 +143,6 @@ var runIt = function() {
         n = document.createElement('hr');
         console.appendChild(n);
     }
-
-    highlightPause = false;
-
-    myInterpreter = new Interpreter(code, initApi);
-    resultWorkspace.traceOn(true);
-    resultWorkspace.highlightBlock(null);
 
     var runCode = function () {
         if(myInterpreter.step()) {
