@@ -8,6 +8,10 @@ var blocklyArea = document.getElementById('blocklyArea');
 var blocklyDiv = document.getElementById('blocklyDiv');
 var workspace = null;
 
+var resultBlocklyArea = document.getElementById('resultBlocklyArea');
+var resultBlocklyDiv = document.getElementById('resultBlocklyDiv');
+var resultWorkspace = null;
+
 var computeAreaCoord = function(area, div){
     var element = area;
     var x = 0;
@@ -23,6 +27,7 @@ var computeAreaCoord = function(area, div){
     div.style.top = y + 'px';
     div.style.width = area.offsetWidth + 'px';
     div.style.height = area.offsetHeight + 'px';
+
 };
 
 var onresize = function(e) {
@@ -31,6 +36,11 @@ var onresize = function(e) {
         workspace = Blockly.inject(blocklyDiv,
                                    {toolbox: document.getElementById('toolbox')});
         workspace.addChangeListener(myUpdateFunction);
+    }
+
+    computeAreaCoord(resultBlocklyArea, resultBlocklyDiv);
+    if(!resultWorkspace) {
+        resultWorkspace = Blockly.inject(resultBlocklyDiv, {readOnly: true});
     }
 };
 
@@ -76,6 +86,7 @@ var showRunningElement = function() {
     console.log(workspace);
     onresize();
     workspace.setVisible(false);
+    resultWorkspace.setVisible(true);
 };
 
 var hideRunningElement = function() {
@@ -83,6 +94,7 @@ var hideRunningElement = function() {
     hideClass("running");
     onresize();
     workspace.setVisible(true);
+    resultWorkspace.setVisible(false);
 };
 
 var runButton = function() {
