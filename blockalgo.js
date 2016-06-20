@@ -70,6 +70,7 @@ var highlightPause = false;
 var readPause = false;
 var pauseLength = 200;
 var code;
+var paused = false;
 
 var showClass = function(c){
     var elementList = document.getElementsByClassName(c);
@@ -141,9 +142,14 @@ var stopIt = function() {
     hideRunningElement();
 };
 
+var pauseIt = function () {
+    paused = true;
+};
+
 var runIt = function() {
-    if(firstrun) {
+    if(firstrun || paused) {
         firstrun = false;
+        paused = false;
     } else {
         var console = document.getElementById('console');
 
@@ -155,7 +161,7 @@ var runIt = function() {
     }
 
     var runCode = function () {
-        if(myInterpreter.step()) {
+        if(myInterpreter.step() && ! paused) {
             if(readPause) {
                 setTimeout(runCode, 250);
             } else if(highlightPause) {
@@ -164,7 +170,7 @@ var runIt = function() {
             } else {
                 runCode();
             }
-        } else {
+        } else if (! paused) {
             makeCode();
         }
     };

@@ -31,8 +31,9 @@
       <button type="button" onclick="runIt()">Lancer l'algorithme</button>
       <label for="speed">Vitesse d’exécution: </label>
       <input id="speed" type="range" min="1" max="50" value="45" onchange="changeSpeed(this.value);"/>
-      <button type="button" onclick="clean()">Vider la console d'interaction</button>
+      <button type="button" onclick="pauseIt()">Pause</button>
       <button type="button" onclick="stepIt()">Un pas</button>
+      <button type="button" onclick="clean()">Vider la console d'interaction</button>
       <button type="button" onclick="stopIt()">Retour</button>
     </div>
     <div id="control" class="notrunning">
