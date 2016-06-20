@@ -128,7 +128,13 @@ var runButton = function() {
 
     resultWorkspace.traceOn(true);
     makeCode();
+    changeSpeed();
+
     resultWorkspace.highlightBlock(null);
+};
+
+var changeSpeed = function(speed) {
+    pauseLength=(50 - document.getElementById('speed').value)*40;
 };
 
 var stopIt = function() {
