@@ -32,20 +32,27 @@ var computeAreaCoord = function(area, div){
 
 var onresize = function(e) {
     computeAreaCoord(blocklyArea, blocklyDiv);
+    computeAreaCoord(resultBlocklyArea, resultBlocklyDiv);
+};
+
+
+var onload = function(e) {
+    onresize(e);
     if(!workspace) {
-        workspace = Blockly.inject(blocklyDiv,
-                                   {toolbox: document.getElementById('toolbox')});
+        console.log('make workspace');
+        workspace = Blockly.inject(blocklyDiv, {toolbox: document.getElementById('toolbox')});
         workspace.addChangeListener(myUpdateFunction);
     }
-
-    computeAreaCoord(resultBlocklyArea, resultBlocklyDiv);
     if(!resultWorkspace) {
+        console.log('make result workspace');
         resultWorkspace = Blockly.inject(resultBlocklyDiv, {readOnly: true});
     }
+    hideClass("running");
+    onresize(e);
 };
 
 window.addEventListener('resize', onresize, false);
-window.addEventListener('load', onresize, false);
+window.addEventListener('load', onload, false);
 
 function myUpdateFunction(event) {
     var code = Blockly.JavaScript.workspaceToCode(workspace);
@@ -83,10 +90,10 @@ var hideClass = function(c){
 var showRunningElement = function() {
     showClass("running");
     hideClass("notrunning");
-    console.log(workspace);
     onresize();
     workspace.setVisible(false);
     resultWorkspace.setVisible(true);
+    onresize();
 };
 
 var hideRunningElement = function() {
@@ -95,15 +102,24 @@ var hideRunningElement = function() {
     onresize();
     workspace.setVisible(true);
     resultWorkspace.setVisible(false);
+    onresize();
 };
 
 var runButton = function() {
+    showRunningElement();
+
+    var xmlDom = Blockly.Xml.workspaceToDom(workspace);
+
+    if(xmlDom){
+        resultWorkspace.clear();
+        Blockly.Xml.domToWorkspace(resultWorkspace, xmlDom);
+    }
+
     var old_statement_prefix = Blockly.JavaScript.STATEMENT_PREFIX;
     Blockly.JavaScript.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
-    code = Blockly.JavaScript.workspaceToCode(workspace);
+    code = Blockly.JavaScript.workspaceToCode(resultWorkspace);
     Blockly.JavaScript.STATEMENT_PREFIX = old_statement_prefix;
 
-    showRunningElement();
 };
 
 var stopIt = function() {
@@ -126,8 +142,8 @@ var runIt = function() {
     highlightPause = false;
 
     myInterpreter = new Interpreter(code, initApi);
-    workspace.traceOn(true);
-    workspace.highlightBlock(null);
+    resultWorkspace.traceOn(true);
+    resultWorkspace.highlightBlock(null);
 
     var runCode = function () {
         if(myInterpreter.step()) {
@@ -270,7 +286,7 @@ function initApi(interpreter, scope) {
 
     wrapper = function(id) {
         id = id ? id.toString() : '';
-        workspace.highlightBlock(id);
+        resultWorkspace.highlightBlock(id);
         highlightPause = true;
         return interpreter.createPrimitive(null);
     };
