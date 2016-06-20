@@ -4,9 +4,6 @@
 // termes de la licence APACHE Version 2.0 (Fichier LICENSE)
 
 var workspace = Blockly.inject('blocklyDiv', {toolbox: document.getElementById('toolbox')});
-var myInterpreter;
-
-var firstrun = true;
 
 
 function myUpdateFunction(event) {
@@ -20,13 +17,24 @@ function myUpdateFunction(event) {
 }
 
 workspace.addChangeListener(myUpdateFunction);
+var myInterpreter;
+var firstrun = true;
+var highlightPause = false;
+var readPause = false;
+var pauseLength = 200;
+var code;
+
 
 var runButton = function() {
     var old_statement_prefix = Blockly.JavaScript.STATEMENT_PREFIX;
     Blockly.JavaScript.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
-    var code = Blockly.JavaScript.workspaceToCode(workspace);
+    code = Blockly.JavaScript.workspaceToCode(workspace);
     Blockly.JavaScript.STATEMENT_PREFIX = old_statement_prefix;
 
+    runIt();
+};
+
+var runIt = function() {
     if(firstrun) {
         firstrun = false;
     } else {
@@ -39,7 +47,7 @@ var runButton = function() {
         console.appendChild(n);
     }
 
-    var highlightPause = false;
+    highlightPause = false;
 
     myInterpreter = new Interpreter(code, initApi);
     workspace.traceOn(true);
@@ -47,10 +55,14 @@ var runButton = function() {
 
     var runCode = function () {
         if(myInterpreter.step()) {
-            // Ran until an async call.  Give this call a chance to run.
-            // Then start running again later.
-            // 1000ms is waaay too long, but is used here to demo the pause.
-            setTimeout(runCode, 4);
+            if(readPause) {
+                setTimeout(runCode, 250);
+            } else if(highlightPause) {
+                setTimeout(runCode, pauseLength);
+                highlightPause = false;
+            } else {
+                runCode();
+            }
         };
     };
     runCode();
@@ -100,10 +112,11 @@ function openWorkspace() {
 }
 
 function realyOpenWorkspace(e) {
+    var file;
     if (!e) {
-        var file = document.getElementById("fileElem").files;
+        file = document.getElementById("fileElem").files;
     } else {
-        var file = e.dataTranfer.files;
+        file = e.dataTranfer.files;
     }
     var loading = new FileReader();
     loading.readAsText(file[0]);
@@ -161,6 +174,7 @@ function initApi(interpreter, scope) {
     // Add an API function for the prompt() block.
     wrapper = function(text,callback) {
         text = text ? text.toString() : '';
+        readPause = true;
         promptOk = function () {
             var div = document.getElementById('console');
             var input = document.getElementById('input'+promptId);
@@ -168,6 +182,7 @@ function initApi(interpreter, scope) {
 
             input.disabled = true;
             button.disabled = true;
+            readPause = false;
 
             var value = input.value;
             callback(interpreter.createPrimitive(value));
@@ -180,6 +195,7 @@ function initApi(interpreter, scope) {
     wrapper = function(id) {
         id = id ? id.toString() : '';
         workspace.highlightBlock(id);
+        highlightPause = true;
         return interpreter.createPrimitive(null);
     };
     interpreter.setProperty(scope, 'highlightBlock',
