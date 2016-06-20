@@ -7,6 +7,7 @@
 var blocklyArea = document.getElementById('blocklyArea');
 var blocklyDiv = document.getElementById('blocklyDiv');
 var workspace = null;
+
 var onresize = function(e) {
     // Compute the absolute coordinates and dimensions of blocklyArea.
     var element = blocklyArea;
@@ -50,6 +51,36 @@ var readPause = false;
 var pauseLength = 200;
 var code;
 
+var showClass = function(c){
+    var elementList = document.getElementsByClassName(c);
+    for(var i = 0; i < elementList.length; i++){
+        var element = elementList[i];
+        element.className = element.className.replace( /(?:^|\s)hidden(?!\S)/g , '' );
+    }
+};
+
+var hideClass = function(c){
+    var elementList = document.getElementsByClassName(c);
+    for(var i = 0; i < elementList.length; i++){
+        var element = elementList[i];
+        element.className += " hidden";
+    }
+};
+
+var showRunningElement = function() {
+    showClass("running");
+    hideClass("notrunning");
+    console.log(workspace);
+    onresize();
+    workspace.setVisible(false);
+};
+
+var hideRunningElement = function() {
+    showClass("notrunning");
+    hideClass("running");
+    onresize();
+    workspace.setVisible(true);
+};
 
 var runButton = function() {
     var old_statement_prefix = Blockly.JavaScript.STATEMENT_PREFIX;
@@ -57,7 +88,11 @@ var runButton = function() {
     code = Blockly.JavaScript.workspaceToCode(workspace);
     Blockly.JavaScript.STATEMENT_PREFIX = old_statement_prefix;
 
-    runIt();
+    showRunningElement();
+};
+
+var stopIt = function() {
+    hideRunningElement();
 };
 
 var runIt = function() {
