@@ -8,9 +8,8 @@ var blocklyArea = document.getElementById('blocklyArea');
 var blocklyDiv = document.getElementById('blocklyDiv');
 var workspace = null;
 
-var onresize = function(e) {
-    // Compute the absolute coordinates and dimensions of blocklyArea.
-    var element = blocklyArea;
+var computeAreaCoord = function(area, div){
+    var element = area;
     var x = 0;
     var y = 0;
     do {
@@ -18,12 +17,16 @@ var onresize = function(e) {
         y += element.offsetTop;
         element = element.offsetParent;
     } while (element);
-    console.log("resize",x,y,blocklyArea.offsetWidth,blocklyArea.offsetHeight);
-    // Position blocklyDiv over blocklyArea.
-    blocklyDiv.style.left = x + 'px';
-    blocklyDiv.style.top = y + 'px';
-    blocklyDiv.style.width = blocklyArea.offsetWidth + 'px';
-    blocklyDiv.style.height = blocklyArea.offsetHeight + 'px';
+    console.log("resize",x,y,area.offsetWidth,area.offsetHeight);
+    // Position div over area.
+    div.style.left = x + 'px';
+    div.style.top = y + 'px';
+    div.style.width = area.offsetWidth + 'px';
+    div.style.height = area.offsetHeight + 'px';
+};
+
+var onresize = function(e) {
+    computeAreaCoord(blocklyArea, blocklyDiv);
     if(!workspace) {
         workspace = Blockly.inject(blocklyDiv,
                                    {toolbox: document.getElementById('toolbox')});
