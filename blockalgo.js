@@ -113,8 +113,19 @@ var makeCode = function(){
     Blockly.JavaScript.STATEMENT_PREFIX = old_statement_prefix;
 
     myInterpreter = new Interpreter(code, initApi);
-    highlightPause = false;
 
+    highlightPause = false;
+    if(firstrun) {
+        firstrun = false;
+    } else {
+        var console = document.getElementById('console');
+
+        var n = document.createElement('br');
+        console.appendChild(n);
+
+        n = document.createElement('hr');
+        console.appendChild(n);
+    }
 };
 
 var runButton = function() {
@@ -160,18 +171,7 @@ var stepIt = function () {
 };
 
 var runIt = function() {
-    if(firstrun || paused) {
-        firstrun = false;
-        paused = false;
-    } else {
-        var console = document.getElementById('console');
-
-        var n = document.createElement('br');
-        console.appendChild(n);
-
-        n = document.createElement('hr');
-        console.appendChild(n);
-    }
+    paused = false;
 
     var runCode = function () {
         if(myInterpreter.step() && ! paused) {
