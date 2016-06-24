@@ -20,6 +20,10 @@ div.frame div,pre {
     margin-top: 0px;
 }
 
+.console {
+    overflow-y:scroll;
+}
+
 div.frame  label {
     border-style: solid;
     border-width: 3px;
@@ -27,8 +31,18 @@ div.frame  label {
 }
 
 div.license {
-    color: rgb(100,100,100);
+    color: rgb(180,180,180);
     margin: 20px;
+    font-size: 0.7em;
+}
+
+div.license a:link {
+    color: rgb(180, 180, 238)
+}
+
+
+div.license a:visited {
+    color: rgb(220, 180, 220)
 }
 
 div.sublicense {
