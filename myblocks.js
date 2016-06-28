@@ -72,57 +72,53 @@ Blockly.JavaScript['variables_lire'] = function(block) {
 
 // Change the flyoutCategory function. This is derived from Google's flyoutCategory
 Blockly.Variables.flyoutCategory = function(workspace) {
-  var variableList = Blockly.Variables.allVariables(workspace);
-  variableList.sort(goog.string.caseInsensitiveCompare);
-  // In addition to the user's variables, we also want to display the default
-  // variable name at the top.  We also don't want this duplicated if the
-  // user has created a variable of the same name.
-  goog.array.remove(variableList, Blockly.Msg.VARIABLES_DEFAULT_NAME);
-  variableList.unshift(Blockly.Msg.VARIABLES_DEFAULT_NAME);
+    var variableList = Blockly.Variables.allVariables(workspace);
+    variableList.sort(goog.string.caseInsensitiveCompare);
+    // In addition to the user's variables, we also want to display the default
+    // variable name at the top.  We also don't want this duplicated if the
+    // user has created a variable of the same name.
+    goog.array.remove(variableList, Blockly.Msg.VARIABLES_DEFAULT_NAME);
+    variableList.unshift(Blockly.Msg.VARIABLES_DEFAULT_NAME);
 
-  var xmlList = [];
-  for (var i = 0; i < variableList.length; i++) {
-    if (Blockly.Blocks['variables_affectation']) {
-      // <block type="variables_affectation" gap="8">
-      //   <field name="VAR">item</field>
-      // </block>
-      var block = goog.dom.createDom('block');
-      block.setAttribute('type', 'variables_affectation');
-      block.setAttribute('gap', 8);
+    var xmlList = [];
+    for (var i = 0; i < variableList.length; i++) {
+        // <block type="variables_affectation" gap="8">
+        //   <field name="VAR">item</field>
+        // </block>
+        var block = goog.dom.createDom('block');
+        block.setAttribute('type', 'variables_affectation');
+        block.setAttribute('gap', 8);
 
-      var field = goog.dom.createDom('field', null, variableList[i]);
-      field.setAttribute('name', 'VAR');
-      block.appendChild(field);
-      xmlList.push(block);
+        var field = goog.dom.createDom('field', null, variableList[i]);
+        field.setAttribute('name', 'VAR');
+        block.appendChild(field);
+        xmlList.push(block);
+
+        // <block type="variables_get" gap="8">
+        //   <field name="VAR">item</field>
+        // </block>
+        block = goog.dom.createDom('block');
+        block.setAttribute('type', 'variables_get');
+        block.setAttribute('gap', 8);
+
+        field = goog.dom.createDom('field', null, variableList[i]);
+        field.setAttribute('name', 'VAR');
+        block.appendChild(field);
+        xmlList.push(block);
+
+        // <block type="variables_lire" gap="24">
+        //   <field name="VAR">item</field>
+        // </block>
+        block = goog.dom.createDom('block');
+        block.setAttribute('type', 'variables_lire');
+        block.setAttribute('gap', 24);
+
+        field = goog.dom.createDom('field', null, variableList[i]);
+        field.setAttribute('name', 'VAR');
+        block.appendChild(field);
+        xmlList.push(block);
     }
-    if (Blockly.Blocks['variables_get']) {
-      // <block type="variables_get" gap="24">
-      //   <field name="VAR">item</field>
-      // </block>
-      var block = goog.dom.createDom('block');
-      block.setAttribute('type', 'variables_get');
-      block.setAttribute('gap', 8);
-
-      var field = goog.dom.createDom('field', null, variableList[i]);
-      field.setAttribute('name', 'VAR');
-      block.appendChild(field);
-      xmlList.push(block);
-    }
-    if (Blockly.Blocks['variables_lire']) {
-      // <block type="variables_get" gap="24">
-      //   <field name="VAR">item</field>
-      // </block>
-      var block = goog.dom.createDom('block');
-      block.setAttribute('type', 'variables_lire');
-      block.setAttribute('gap', 24);
-
-      var field = goog.dom.createDom('field', null, variableList[i]);
-      field.setAttribute('name', 'VAR');
-      block.appendChild(field);
-      xmlList.push(block);
-    }
-  }
-  return xmlList;
+    return xmlList;
 };
 
 
