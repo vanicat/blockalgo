@@ -106,6 +106,31 @@ Blockly.Variables.flyoutCategory = function(workspace) {
         block.appendChild(field);
         xmlList.push(block);
 
+        // <block type="text_afficher">
+        //   <value name="TEXT">
+        //     <block type="variables_get">
+        //       <field name="VAR">item</field>
+        //     </block>
+        //   </value>
+        // </block>
+        block = goog.dom.createDom('block');
+        block.setAttribute('type', 'text_afficher');
+        block.setAttribute('gap', 8);
+
+        var value = goog.dom.createDom('value');
+        value.setAttribute('name', 'TEXT');
+        block.appendChild(value);
+
+        var inblock = goog.dom.createDom('block');
+        inblock.setAttribute('type', 'variables_get');
+        value.appendChild(inblock);
+
+        field = goog.dom.createDom('field', null, variableList[i]);
+        field.setAttribute('name', 'VAR');
+        inblock.appendChild(field);
+
+        xmlList.push(block);
+
         // <block type="variables_lire" gap="24">
         //   <field name="VAR">item</field>
         // </block>
