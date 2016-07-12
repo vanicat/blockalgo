@@ -149,12 +149,16 @@ var changeSpeed = function(speed) {
     pauseLength=(50 - document.getElementById('speed').value)*40;
 };
 
-var stopIt = function() {
+var back = function() {
     hideRunningElement();
 };
 
 var pauseIt = function () {
     paused = true;
+};
+
+var stopIt = function () {
+    makeCode();
 };
 
 var stepIt = function () {

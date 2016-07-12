@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="780"
+   height="780"
+   id="svg3336"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="Nouveau document 13">
+  <defs
+     id="defs3338" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="436.42857"
+     inkscape:cy="701.42858"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="10"
+     fit-margin-left="10"
+     fit-margin-right="10"
+     fit-margin-bottom="10"
+     inkscape:window-width="582"
+     inkscape:window-height="421"
+     inkscape:window-x="584"
+     inkscape:window-y="35"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata3341">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(61.42857,-453.79075)">
+    <g
+       id="g3327"
+       transform="translate(-107.42857,407.79075)">
+      <g
+         id="g3006-82"
+         transform="matrix(1,0,0,-1,0,800)">
+        <path
+           id="path3008-6"
+           d="M 56,364 C 56,574 226,744 436,744 646,744 816,574 816,364 816,154 646,-16 436,-16 226,-16 56,154 56,364 z m 120,0 C 176,220 292,104 436,104 580,104 696,220 696,364 696,508 580,624 436,624 292,624 176,508 176,364 z"
+           style="fill:currentColor"
+           inkscape:connector-curvature="0" />
+      </g>
+      <path
+         id="path3016-2"
+         d="m 516.61,312.53 v 102.09 l -204.03,-102 v 246.75 l 204.03,-102 v 102.09 h 42.812 V 312.52 H 516.61 z"
+         style="color:#000000;fill:#000000;stroke:#000000;stroke-width:3.2585001;stroke-linecap:round;stroke-linejoin:round"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+</svg>

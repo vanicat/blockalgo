@@ -28,13 +28,24 @@
       <div id="console_frame" class="frame right"><label>Interaction</label>
         <pre id="console" class="console" style="height: 480px; width: 99%;"></pre>
       </div>
-      <button type="button" onclick="runIt()">Lancer l'algorithme</button>
+      <button type="button" onclick="runIt()">
+        <img src="media/play.svg" width="20" alt="Go"/>
+      </button>
+      <button type="button" onclick="stepIt()">
+        <img src="media/step.svg" width="20" alt="Un pas"/>
+      </button>
+      <button type="button" onclick="pauseIt()">
+        <img src="media/pause.svg" width="20" alt="Pause"/>
+      </button>
+      <button type="button" onclick="stopIt()">
+        <img src="media/stop.svg" width="20" alt="Stop"/>
+      </button>
+      <button type="button" onclick="back()">
+        <img src="media/end.svg" width="20" alt="Stop"/>
+      </button>
       <label for="speed">Vitesse d’exécution: </label>
       <input id="speed" type="range" min="1" max="50" value="45" onchange="changeSpeed(this.value);"/>
-      <button type="button" onclick="pauseIt()">Pause</button>
-      <button type="button" onclick="stepIt()">Un pas</button>
       <button type="button" onclick="clean()">Vider la console d'interaction</button>
-      <button type="button" onclick="stopIt()">Retour</button>
     </div>
     <div id="control" class="notrunning">
       <button type="button" onclick="runButton()">Tester le code</button>
