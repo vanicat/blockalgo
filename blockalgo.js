@@ -45,7 +45,11 @@ var onload = function(e) {
     }
     if(!resultWorkspace) {
         console.log('make result workspace');
-        resultWorkspace = Blockly.inject(resultBlocklyDiv, {readOnly: true});
+        resultWorkspace = Blockly.inject(resultBlocklyDiv, {
+            readOnly: true,
+            scrollbars: true
+
+        });
     }
     hideClass("running");
     onresize(e);
@@ -62,6 +66,9 @@ function myUpdateFunction(event) {
     var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
 
     document.getElementById('xml').value = xmlText;
+
+    resultWorkspace.clear();
+    Blockly.Xml.domToWorkspace(resultWorkspace, xmlDom);
 }
 
 var myInterpreter;
