@@ -72,79 +72,72 @@ Blockly.JavaScript['variables_lire'] = function(block) {
 
 // Change the flyoutCategory function. This is derived from Google's flyoutCategory
 Blockly.Variables.flyoutCategory = function(workspace) {
-    var variableList = Blockly.Variables.allVariables(workspace);
+
+    var variableList = workspace.variableList;
     variableList.sort(goog.string.caseInsensitiveCompare);
-    // In addition to the user's variables, we also want to display the default
-    // variable name at the top.  We also don't want this duplicated if the
-    // user has created a variable of the same name.
-    goog.array.remove(variableList, Blockly.Msg.VARIABLES_DEFAULT_NAME);
-    variableList.unshift(Blockly.Msg.VARIABLES_DEFAULT_NAME);
 
     var xmlList = [];
-    for (var i = 0; i < variableList.length; i++) {
-        // <block type="variables_affectation" gap="8">
-        //   <field name="VAR">item</field>
-        // </block>
-        var block = goog.dom.createDom('block');
-        block.setAttribute('type', 'variables_affectation');
-        block.setAttribute('gap', 8);
+    var button = goog.dom.createDom('button');
+    button.setAttribute('text', Blockly.Msg.NEW_VARIABLE);
+    xmlList.push(button);
 
-        var field = goog.dom.createDom('field', null, variableList[i]);
-        field.setAttribute('name', 'VAR');
-        block.appendChild(field);
-        xmlList.push(block);
+    if (variableList.length > 0) {
+        if (Blockly.Blocks['variables_set']) {
+            // <block type="variables_set" gap="20">
+            //   <field name="VAR">item</field>
+            // </block>
+            var block = goog.dom.createDom('block');
+            block.setAttribute('type', 'variables_set');
+            if (Blockly.Blocks['math_change']) {
+                block.setAttribute('gap', 8);
+            } else {
+                block.setAttribute('gap', 24);
+            }
+            var field = goog.dom.createDom('field', null, variableList[0]);
+            field.setAttribute('name', 'VAR');
+            block.appendChild(field);
+            xmlList.push(block);
+        }
+        if (Blockly.Blocks['variables_lire']) {
+            // <block type="variables_lire">
+            //   <value name="DELTA">
+            //     <shadow type="math_number">
+            //       <field name="NUM">1</field>
+            //     </shadow>
+            //   </value>
+            // </block>
+            var block = goog.dom.createDom('block');
+            block.setAttribute('type', 'variables_lire');
+            if (Blockly.Blocks['variables_get']) {
+                block.setAttribute('gap', 20);
+            }
+            var field = goog.dom.createDom('field', null, variableList[0]);
+            field.setAttribute('name', 'VAR');
+            block.appendChild(field);
 
-        // <block type="variables_get" gap="8">
-        //   <field name="VAR">item</field>
-        // </block>
-        block = goog.dom.createDom('block');
-        block.setAttribute('type', 'variables_get');
-        block.setAttribute('gap', 8);
+            xmlList.push(block);
+        }
 
-        field = goog.dom.createDom('field', null, variableList[i]);
-        field.setAttribute('name', 'VAR');
-        block.appendChild(field);
-        xmlList.push(block);
-
-        // <block type="text_afficher">
-        //   <value name="TEXT">
-        //     <block type="variables_get">
-        //       <field name="VAR">item</field>
-        //     </block>
-        //   </value>
-        // </block>
-        block = goog.dom.createDom('block');
-        block.setAttribute('type', 'text_afficher');
-        block.setAttribute('gap', 8);
-
-        var value = goog.dom.createDom('value');
-        value.setAttribute('name', 'TEXT');
-        block.appendChild(value);
-
-        var inblock = goog.dom.createDom('block');
-        inblock.setAttribute('type', 'variables_get');
-        value.appendChild(inblock);
-
-        field = goog.dom.createDom('field', null, variableList[i]);
-        field.setAttribute('name', 'VAR');
-        inblock.appendChild(field);
-
-        xmlList.push(block);
-
-        // <block type="variables_lire" gap="24">
-        //   <field name="VAR">item</field>
-        // </block>
-        block = goog.dom.createDom('block');
-        block.setAttribute('type', 'variables_lire');
-        block.setAttribute('gap', 24);
-
-        field = goog.dom.createDom('field', null, variableList[i]);
-        field.setAttribute('name', 'VAR');
-        block.appendChild(field);
-        xmlList.push(block);
+        for (var i = 0; i < variableList.length; i++) {
+            if (Blockly.Blocks['variables_get']) {
+                // <block type="variables_get" gap="8">
+                //   <field name="VAR">item</field>
+                // </block>
+                var block = goog.dom.createDom('block');
+                block.setAttribute('type', 'variables_get');
+                if (Blockly.Blocks['variables_set']) {
+                    block.setAttribute('gap', 8);
+                }
+                var field = goog.dom.createDom('field', null, variableList[i]);
+                field.setAttribute('name', 'VAR');
+                block.appendChild(field);
+                xmlList.push(block);
+            }
+        }
     }
     return xmlList;
 };
+
 
 
 // https://blockly-demo.appspot.com/static/demos/blockfactory/index.html#3hc9fz
