@@ -203,4 +203,26 @@ Blockly.JavaScript['text_afficher'] = function(block) {
     return code;
 };
 
+// https://blockly-demo.appspot.com/static/demos/blockfactory/index.html#27d22b
+Blockly.Blocks['math_compute'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("Calcule:")
+            .appendField(new Blockly.FieldTextInput("x*x"), "FORMULA");
+        this.setInputsInline(true);
+        this.setOutput(true, "Number");
+        this.setColour(230);
+        this.setTooltip('');
+        this.setHelpUrl('http://www.example.com/');
+    }
+};
+
+Blockly.JavaScript['math_compute'] = function(block) {
+    var text_formula = block.getFieldValue('FORMULA');
+    // TODO: Assemble JavaScript into code variable.
+    var code = text_formula;
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.Msg.VARIABLES_DEFAULT_NAME = "x";
